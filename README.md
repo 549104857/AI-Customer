@@ -1,117 +1,122 @@
-# AI-Customer
 
-电商AI客服桌面应用程序，基于 PyQt6 构建，支持多平台渠道集成，集成 AI 大模型实现智能自动回复。
+## 😉 介绍
 
-## 功能特性
+AI-Desk 是一个桌面端的多模态多模型通用型AI生成助手应用，支持在 mac 端和 win 端安装使用。它可以让您在任意桌面软件上使用 AI 能力来查询生成文本、图片、音频和视频等多种模态数据，帮助您更高效地完成工作。
 
-- **多渠道支持**：目前支持拼多多平台 WebSocket 实时消息接收
-- **AI 智能回复**：基于自研 Agent 框架（不依赖 Agno），多轮工具调用 + 会话上下文管理
-- **AI 主动推荐**：客服代理可主动获取商品列表、发送商品卡片给用户
-- **双知识库体系**：产品知识库 + 客服知识库，分别检索商品信息与售后/物流/退款等政策
-- **商品知识自动同步**：从拼多多 API 拉取商品列表，调用多模态 LLM 提取产品知识入库
-- **关键词转人工**：自动识别用户意图，支持关键词触发转人工服务
-- **消息队列处理**：异步消息队列 + 处理器链，支持高并发场景
-- **自动重连机制**：WebSocket 连接支持断线自动重连和心跳检测
+> 0x0 是一个颜文字表情，同时也是16进制中的数字，最重要的是 0x0 还象征着无限♾️️。
 
-### AI Agent 可用工具
+<div align="center">
+  
+**💫 最新功能**
 
-| 工具名称 | 功能描述 |
-|----------|----------|
-| `get_shop_products` | 获取店铺商品列表（支持价格区间、销量、库存、标签等） |
-| `send_goods_link` | 向用户发送商品卡片链接 |
-| `get_product_knowledge` | 查询指定商品的详细知识（成分、规格、用法、价格等） |
-| `search_customer_service_knowledge` | 搜索客服知识库（售后、物流、退款等政策问答） |
-| `transfer_conversation` | 转接会话给人工客服 |
-
-## 环境要求
-
-- Python >= 3.11
-- Windows 操作系统（打包为 exe 后可在 Windows 上独立运行）
-
-## 安装
-
-```bash
-# 安装依赖
-uv sync
-```
-
-## 启动
-
-```bash
-python app.py
-```
-
-## 配置
-
-首次运行后会在项目根目录生成 `config.json` 配置文件，主要配置项：
-
-| 配置项 | 说明 |
+| 实时字幕 | 全屏识别 |
 | --- | --- |
-| `llm` | LLM 模型配置（模型名称、API 地址、密钥） |
-| `embedder` | 向量嵌入模型配置 |
-| `knowledge_base` | 知识库存储路径 |
-| `business_hours` | 人工客服工作时间（8:00-23:00） |
-| `prompt` | AI 客服提示词配置 |
+| <video src="https://github.com/user-attachments/assets/411634e7-6848-431a-8430-9339a9537f9b"/> | <video src="https://github.com/user-attachments/assets/6364ec90-e5b9-4cc9-ba6c-161887a28a09"/>|
 
-## 开发规范
+</div>
 
-### 新增/修改接口前
+## 🚛 下载及安装
 
-1. **先用 curl 或 Python 脚本测试接口**，确认真实请求参数、请求头、响应结构
-2. **根据实际响应结构修改解析代码**，不要凭猜测写字段名
-3. **修改后用 mock 数据或真实调用验证解析逻辑**
+您可以从 [GitHub Releases](https://github.com/mushan0x0/AI0x0.com/releases) 页面下载 AI-Desk 的最新版本，目前只支持 mac 端和 win 端。
 
-> 例如：修改 `product_manager.py` 的商品列表接口时，先用 curl 测试接口，确认数据在 `result.onSaleGoods` 字段而非 `result.goodsList`，字段名为驼峰 `goodsId` 而非下划线 `goods_id`，价格单位是"分"需除以 100 转换为"元"
+下载完成后，根据不同平台进行相应的安装即可，你还可以点击[查看使用教程](https://github.com/mushan0x0/AI0x0.com/wiki)。
 
-## 构建 Windows 可执行文件
+## ✨ 特性
 
-在 Windows 上运行：
+- 🌀 桌面灵动悬浮球，在任意软件选中文本后随时唤出搜索框 (Mac: <kbd>⌥</kbd>+<kbd>Q</kbd> Win: <kbd>Alt</kbd>+<kbd>1</kbd>)
+- 🎬 AI 实时字幕，可以实时翻译转录系统和麦克风的任意语言的音频
+- 💬 悬浮对话气泡，鼠标放上去查看完整信息，离开查看简要信息
+- ⚙️ 自定义预设，可以自定义你想实现任何功能
+- 📁 收藏对话，将你觉得有价值的对话内容进行收藏，随时翻看
+- 📦 预设包，有官方和社区发布的一整套预设能力，解决各种场景问题
+- ⚡️ 网络加速，开启后直接访问 ChatGPT 等国外 AI 服务
+- 🔍 查询模式，不用离开当前使用的软件就可以使用 AI 查询信息
+- ⌨️ 输入模式，可以在任意软件的任意输入框自动输入 AI 生成内容
+- 🖱️ 鼠标随航，鼠标的一支强大的随航舰队，应对无从下手的任意困难
+- ⏭ 深度定制 [ChatGPT Next Web](https://github.com/Yidadaa/ChatGPT-Next-Web) 的 Chat0x0 快捷唤起对话框 (Mac: <kbd>⌥</kbd>+<kbd>W</kbd> Win: <kbd>Alt</kbd>+<kbd>2</kbd>)
+- 📖 支持全格式文库，让 AI 从你的文库读取信息来完成你的需求
+- 🌐 联网搜索，支持联网搜索获取实时内容，并且给出引用连接
+- 🔈 语音播报，可以语音播报查询结果和生成的音频内容
+- 🗣️ 语音识别，在设置里设置了语音语言后可以使用语音识别输入查询文字
+- 🤖️ 语音助手，在设置里设置了语音语言和快捷键后可以通过语音跟 AI 交流
+- 🧩 应用插件，打通不同应用的内容壁垒，比如使用了浏览器插件后可以实现跟浏览器对话
+- 🪆 多模型，支持低成本随时适配市面上任意好用的语言模型
+- 📰 联网图文生成，通过文章主题联网搜索相关信息和图片，自动生成图文并茂的内容
+- 🏞️ 识图能力，发送截图给 Chat0x0 进行对话 (Mac: <kbd>⌥</kbd>+<kbd>E</kbd> Win: <kbd>Alt</kbd>+<kbd>3</kbd>)
+- 🌈 毛玻璃界面，原生应用优雅的体验
+- 👕 多外观，支持多个外观切换，包括显示 live2d 模型的能力（由于版权，暂不支持自定义）
+- 🌓 针对每个语言模型适配亮色和黑色主题
+- 🥳 承诺永久免费开放除 Chat0x0 以外的语言模型 (Chat0x0 填 key 可免费)
 
-```bash
-python scripts/build_win_exe.py --clean
-```
+## 👕 不同的界面外观
 
-打包产物位于 `dist/AI-Customer/` 目录。
+| 毛玻璃亮色 | 毛玻璃暗色 | live2d |
+| --- | --- | --- |
+| <img width="278" alt="image" src="https://github.com/user-attachments/assets/2eb58742-caa6-4d33-bac2-4d508d85ea46"> | <img width="280" alt="image" src="https://github.com/user-attachments/assets/e770ef5b-f212-4f62-9481-c18fbe61c7f8"> | <img width="386" alt="image" src="https://github.com/user-attachments/assets/c39ec815-ee86-47d5-9525-baf91407dc7a"> |
 
-## 项目结构
+## 💪 支持多种模型
 
-```
-text
-AI-Customer/
-├── Agent/                  # AI 代理模块（自研 Agent 框架）
-│   └── CustomerAgent/
-│       ├── custom/         # 自研实现：LLM 客户端、会话管理、工具执行器
-│       └── tools/          # Agent 工具集（商品/知识/转人工）
-├── Channel/                # 渠道集成
-│   └── pinduoduo/
-│       ├── core/           # 连接、生命周期、状态、消息处理拆分模块
-│       └── utils/API/      # 拼多多 API 封装
-├── Message/                # 消息处理（队列 + 处理器链）
-│   ├── core/               # consumer / handlers / queue
-│   └── handlers/           # 预处理器、AI、关键词处理器
-├── bridge/                 # 桥接模块（Context/Reply）
-├── core/                   # 核心服务（DI 容器、缓存、连接状态）
-├── database/               # 数据库（SQLAlchemy + 知识服务 + 商品同步）
-├── ui/                     # PyQt6 用户界面
-├── utils/                  # 工具模块（日志、路径等）
-├── scripts/                # 构建脚本
-└── app.py                  # 应用入口
-```
+目前 AI-Desk 支持以下几种模型：
 
-## 技术栈
+| 名称 | 联网搜索支持 | 语言模型 | 是否免费 | 多模态 | 是否需要翻墙 |
+| --- | --- | --- | --- | --- | --- |
+| Claude 2 | 不支持 | Claude 100k | 免费 | 支持 | 是 |
+| Perplexity | 支持 | 未知 | 免费 | 不支持 | 是 |
+| ChatGPT | Plus用户支持 | GPT-3.5/GPT-4.0 | 免费/收费 | 不支持 | 是 |
+| PoeChat | 不支持 | GPT-3.5/GPT-4.0/Claude | 免费/收费 | 不支持 | 是 |
+| NewBing | 支持 | GPT-4.0 | 免费 | 支持 | 否 |
+| Chat0x0 | 支持 | GPT-3.5 | 免费/收费 | 支持 | 否 |
+| 文心一言 | 不支持 | 文心一言 | 免费 | 支持 | 否 |
+| 讯飞星火 | 不支持 | 讯飞星火 | 免费 | 不支持 | 否 |
+|...|
 
-| 类别 | 技术 |
-|------|------|
-| UI 框架 | PyQt6 + pyqt6-fluent-widgets |
-| AI 框架 | 自研 Agent 框架 + OpenAI 兼容 API |
-| 数据库 | SQLAlchemy + SQLite |
-| 中文分词 | jieba（知识库检索） |
-| Token 统计 | tiktoken |
-| 异步通信 | asyncio + websockets |
-| 文档解析 | pypdf + python-docx + openpyxl + xlrd |
-| 日志 | Loguru |
-| 配置 | Pydantic |
+## 🎬 功能演示视频
 
-## License
+<div align="center">
 
-MIT
+**通过鼠标随航上传文件**
+
+https://github.com/mushan0x0/AI0x0.com/assets/29084441/0771aab0-2ba0-4256-b1f7-850c78faa26f
+
+**联网搜索加图文生成**
+
+https://github.com/mushan0x0/AI0x0.com/assets/29084441/1d60656a-bf16-4c8a-8a86-dc7b52a775d3
+
+**无视页面长度进行内容查询**
+
+https://user-images.githubusercontent.com/29084441/236841065-db6fe6d1-a4c3-4128-b483-d4c5eddad6e6.mp4
+
+**任意应用查询**
+
+https://github.com/mushan0x0/AI0x0.com/assets/29084441/ce5aea3e-b629-4885-a5da-974cb9b95a11
+
+**切换应用不会干扰输入模式**
+
+https://github.com/mushan0x0/AI0x0.com/assets/29084441/96fbd38d-00e4-4d46-aa30-d880114035aa
+
+**发送截图给 Chat0x0 使用识图能力**
+
+https://github.com/mushan0x0/AI0x0.com/assets/29084441/fdb4b183-873f-49cb-b3b3-0a97e70d3442
+  
+**鼠标随航查询和输入**
+
+https://user-images.githubusercontent.com/29084441/236848125-e701dc3b-ceb3-4d50-956d-21f29e744327.mp4
+
+**全局主题适配**
+
+https://user-images.githubusercontent.com/29084441/236856226-f9ccd522-064e-49b7-9ab2-b730b5f2963c.mp4
+
+**自定义输入预设**
+
+https://user-images.githubusercontent.com/29084441/236859882-e23bc8d1-05c4-4703-92ea-e8a312a250b7.mp4
+
+**联网和文库关键词搜索**
+
+https://user-images.githubusercontent.com/29084441/236873637-297e3629-f398-45c2-b0ec-c7422aa8c12b.mp4
+
+**多模态内容生成**
+
+https://user-images.githubusercontent.com/29084441/236974359-a2ce9fe6-0938-47a1-bea3-8d760502bda3.mp4
+
+</div>
+
